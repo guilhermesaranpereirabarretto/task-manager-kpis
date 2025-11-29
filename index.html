@@ -1,25 +1,131 @@
 <!--Onde fica a estrutura da página.-->
 
-
-    <h1>Task Manager - KPIs</h1>
-
-    <!-- Área para adicionar tarefas -->
-    <div class="task-container">
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager KPIs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fonte premium -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hero">
+    <h1>
+      <span class="emoji">⚡</span>
+      <span class="gradient-text">Task Manager <span class="white-text">KPIs</span></span>
+    </h1>
+    <p class="subtitle">Acompanhe suas tarefas e desempenho<br>com um controle visual incrível.</p>
+  </div>
+  <div class="container">
+    <section class="task-section">
+      <h2><i class="fa-solid fa-plus"></i> Adicionar Tarefa</h2>
+      <div class="add-task">
         <input id="taskInput" type="text" placeholder="Digite uma tarefa...">
         <button onclick="addTask()">Adicionar</button>
+      </div>
+      <ul id="taskList"></ul>
+    </section>
+    <section class="kpis">
+      <h2><i class="fa-solid fa-chart-line"></i> KPIs</h2>
+      <div class="kpi-list">
+        <p><strong>Total de tarefas:</strong> <span id="totalTasks">0</span></p>
+        <p><strong>Tarefas concluídas:</strong> <span id="completedTasks">0</span></p>
+        <p><strong>Progresso:</strong> <span id="progress">0%</span></p>
+        <div class="progress-bar-bg">
+          <div class="progress-bar" style="width: 0%;" id="progressBar"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>Sobre o Projeto</h3>
+        <p>
+          <strong>Task Manager KPIs</strong> é um sistema web para organização de tarefas e acompanhamento de performance.<br>
+          Idealizado para estudo, portfólio, gestão de projetos e demonstração de habilidades de front-end moderno.
+        </p>
+      </div>
+      <div class="footer-contact">
+        <h3>Contato</h3>
+        <p>
+          Desenvolvido por Guilherme Barretto<br>
+          <a href="mailto:guilherme.barret@aluno.unip.br"><i class="fa-solid fa-envelope"></i> guilherme.barret@aluno.unip.br</a><br>
+          <a href="https://github.com/guilhermesaranpereirabarretto" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a><br>
+          <a href="https://www.linkedin.com/in/guilherme-saran-pereira-barretto-660199381" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+        </p>
+      </div>
     </div>
-
-    <!-- Lista de tarefas -->
-    <ul id="taskList"></ul>
-
-    <!-- KPIs -->
-    <div class="kpis">
-        <h2>KPIs</h2>
-        <p>Total de tarefas: <span id="totalTasks">0</span></p>
-        <p>Tarefas concluídas: <span id="completedTasks">0</span></p>
-        <p>Progresso: <span id="progress">0%</span></p>
+    <div class="footer-bottom">
+      &copy; 2025 Task Manager KPIs. Todos os direitos reservados.
     </div>
+  </footer>
 
-    <script src="script.js"></script>
+  <script>
+    // Exemplo básico de script.js direto no HTML
+    let tasks = [];
+
+    function addTask() {
+      const input = document.getElementById('taskInput');
+      const value = input.value.trim();
+      if (!value) return;
+      tasks.push({ text: value, done: false });
+      input.value = "";
+      renderTasks();
+      updateKPIs();
+    }
+
+    function toggleTask(index) {
+      tasks[index].done = !tasks[index].done;
+      renderTasks();
+      updateKPIs();
+    }
+
+    function removeTask(index) {
+      tasks.splice(index, 1);
+      renderTasks();
+      updateKPIs();
+    }
+
+    function renderTasks() {
+      const list = document.getElementById('taskList');
+      list.innerHTML = "";
+      tasks.forEach((task, idx) => {
+        const li = document.createElement('li');
+        li.textContent = task.text;
+        if(task.done) li.classList.add('completed');
+        li.onclick = () => toggleTask(idx);
+
+        const delBtn = document.createElement('button');
+        delBtn.textContent = "Excluir";
+        delBtn.onclick = (event) => { event.stopPropagation(); removeTask(idx); };
+        delBtn.style.marginLeft = "12px";
+        delBtn.className = "del-btn";
+        li.appendChild(delBtn);
+
+        list.appendChild(li);
+      });
+    }
+
+    function updateKPIs() {
+      const total = tasks.length;
+      const done = tasks.filter(t => t.done).length;
+      const percent = total ? Math.round((done / total) * 100) : 0;
+      document.getElementById('totalTasks').textContent = total;
+      document.getElementById('completedTasks').textContent = done;
+      document.getElementById('progress').textContent = percent + "%";
+      document.getElementById('progressBar').style.width = percent + "%";
+    }
+
+    // inicialização
+    renderTasks();
+    updateKPIs();
+  </script>
 </body>
 </html>

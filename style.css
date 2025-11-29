@@ -1,43 +1,298 @@
 /*Onde fica o visual (cores, espaçamento, estilos).*/
 
-/* Estilos gerais */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background: #f4f4f4;
+  background: radial-gradient(ellipse at 60% 20%, #23242b 60%, #11131c 100%);
+  min-height: 100vh;
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;
+  color: #f8f8fa;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
 }
 
-h1 {
-    text-align: center;
+.hero {
+  text-align: center;
+  margin-top: 54px;
+  margin-bottom: 1.5vw;
+  user-select: none;
+}
+.hero h1 {
+  font-size: 3.3rem;
+  font-weight: 900;
+  margin: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.emoji {
+  font-size: 2.4rem;
+  margin-right: 5px;
+  filter: drop-shadow(0 2px 8px #ffb70088);
+}
+.gradient-text {
+  background: linear-gradient(90deg, #ff9000 75%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.white-text { color: #fff; -webkit-text-fill-color: #fff; }
+.hero .subtitle {
+  color: #e9e9ee;
+  font-size: 1.25rem;
+  margin-top: 6px;
+  text-shadow: 0 1px 6px #0005;
 }
 
-/* Área do input */
-.task-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 42px;
+  max-width: 980px;
+  margin: 36px auto 0 auto;
 }
 
-/* Lista de tarefas */
-#taskList {
-    list-style: none;
-    padding: 0;
+section {
+  background: #23242b;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px -10px #ff900055, 0 7px 32px #000b;
+  padding: 38px 32px 28px 32px;
+  min-width: 316px;
+  max-width: 400px;
+  flex: 1 1 350px;
+  transition: box-shadow 0.3s, transform 0.16s;
+  position: relative;
+  z-index: 2;
+}
+section:hover {
+  box-shadow: 0 16px 48px -7px #ffb20066, 0 10px 36px #000b;
+  transform: translateY(-2px) scale(1.02);
+}
+section h2 {
+  font-size: 1.5rem;
+  color: #ff9000;
+  margin-bottom: 24px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  letter-spacing: 0.01em;
+  text-shadow: 0 3px 21px #ffb70044, 0 0.5px 5px #0002;
+}
+section h2 i {
+  color: #ffb700;
+  font-size: 1.2em;
+  margin-right: 2px;
 }
 
-#taskList li {
-    background: white;
-    padding: 10px;
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 5px;
-    align-items: center;
+/* ADD TASK */
+.add-task {
+  display: flex;
+  gap: 12px;
 }
 
-/* KPIs */
+.add-task input[type="text"] {
+  flex: 1;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  background: #363645;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 1.5px 8px 0 #ff900022;
+  transition: box-shadow 0.17s;
+}
+.add-task input[type="text"]:focus {
+  box-shadow: 0 3px 14px 0 #ff900044;
+}
+.add-task button {
+  padding: 13px 28px;
+  border: none;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #ff9900 40%, #ffb447 100%);
+  color: #23242b;
+  font-weight: bold;
+  font-size: 1.12rem;
+  cursor: pointer;
+  box-shadow: 0 6px 18px #ff99002b, 0 4px 12px #ffbb003b;
+  outline: none;
+  letter-spacing: 0.012em;
+  text-shadow: 0 2px 14px #fff5;
+  filter: drop-shadow(0 2px 11px #ffb70086);
+  transition: background 0.22s, color 0.16s, box-shadow 0.20s, transform 0.13s;
+  position: relative;
+}
+.add-task button:hover {
+  background: linear-gradient(90deg, #ffaa36 34%, #ffda65 100%);
+  color: #f88d00;
+  box-shadow: 0 8px 26px #ffb20060, 0 10px 48px #fff4;
+  transform: translateY(-2px) scale(1.06);
+}
+
+/* TASKS */
+ul#taskList {
+  list-style: none;
+  margin: 18px 0 0 0;
+  padding: 0;
+}
+ul#taskList li {
+  background: #323446;
+  color: #f8f8fa;
+  padding: 12px 16px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.07rem;
+  box-shadow: 0 1.5px 8px #ff90001a, 0 0.4px 1px #0004;
+  transition: box-shadow 0.15s;
+  position: relative;
+}
+ul#taskList li.completed {
+  text-decoration: line-through;
+  color: #c8c8c8;
+  opacity: 0.72;
+  font-style: italic;
+}
+.del-btn {
+  background: #ff9000;
+  color: #222;
+  font-weight: bold;
+  border-radius: 4px;
+  border: none;
+  padding: 6px 11px;
+  margin-left: 8px;
+  cursor: pointer;
+  margin-top: -2px;
+  transition: background 0.2s, color 0.2s;
+}
+.del-btn:hover {
+  background: #ff3a00;
+  color: #fff;
+}
+
+/* KPIS */
 .kpis {
-    margin-top: 30px;
-    padding: 15px;
-    background: white;
-    border-radius: 8px;
+  min-width: 220px;
 }
+.kpi-list p {
+  font-size: 1.16rem;
+  margin: 15px 0 9px 0;
+  letter-spacing: 0.01em;
+}
+.kpi-list span {
+  color: #ff9900;
+  font-weight: bold;
+}
+.progress-bar-bg {
+  background: #282a34;
+  border-radius: 12px;
+  height: 20px;
+  width: 92%;
+  margin: 18px auto 0 auto;
+}
+.progress-bar {
+  background: linear-gradient(90deg, #ff9000, #ffdd55 95%);
+  height: 100%;
+  border-radius: 12px;
+  transition: width 0.5s;
+  filter: drop-shadow(0 3px 7px #ffb70050);
+}
+
+footer {
+  background: linear-gradient(90deg, #23242b 50%, #18191f 100%);
+  color: #f0f0f0;
+  margin-top: 60px;
+  padding: 32px 0 8px 0;
+  font-size: 1.03rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 -4px 30px #0006;
+}
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 16px;
+}
+.footer-info, .footer-contact {
+  max-width: 390px;
+}
+footer h3 {
+  color: #ffb700;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  margin-bottom: 7px;
+  margin-top: 0;
+}
+.footer-info p strong {
+  color: #ffb700;
+}
+
+.footer-contact a {
+  color: #ff9000;
+  text-decoration: none;
+  padding-right: 10px;
+  transition: color 0.15s;
+  word-break: break-all;
+  display: inline-block;
+}
+.footer-contact a:hover {
+  color: #ffd477;
+  text-decoration: underline;
+}
+.footer-contact i, .footer-bottom i {
+  margin-right: 7px;
+}
+.footer-bottom {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.98rem;
+  margin-top: 12px;
+  border-top: 1.5px solid #ffb70019;
+  padding-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 3vw;
+    gap: 30px;
+  }
+  section {
+    min-width: 0;
+    width: 99vw;
+    margin: 0;
+    padding-left: 6vw;
+    padding-right: 6vw;
+  }
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+}
+
+/* FLOATING SHADOW GLOW ON PANELS */
+section::after {
+  content: "";
+  position: absolute;
+  top: 104%;
+  left: 50%;
+  width: 85%;
+  height: 19px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center*
+
