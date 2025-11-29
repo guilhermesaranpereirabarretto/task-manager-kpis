@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Scrum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Quadro Scrum com Sprints</h1>
+
+    <!-- Botão de adicionar -->
+    <div class="add-container">
+        <button id="addButton">Adicionar</button>
+
+        <div id="addMenu" class="hidden">
+            <p class="menu-title">Criar:</p>
+            <button class="menu-option" data-type="sprint">🟦 Sprint</button>
+            <button class="menu-option" data-type="story">🟩 User Story</button>
+            <button class="menu-option" data-type="task">🟨 Task</button>
+        </div>
+    </div>
+
+    <div class="board">
+        <div class="column" id="todo">
+            <h2>To Do</h2>
+        </div>
+
+        <div class="column" id="doing">
+            <h2>Doing</h2>
+        </div>
+
+        <div class="column" id="done">
+            <h2>Done</h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
