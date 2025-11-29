@@ -1,0 +1,43 @@
+/*Onde fica o visual (cores, espaçamento, estilos).*/
+
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Área do input */
+.task-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Lista de tarefas */
+#taskList {
+    list-style: none;
+    padding: 0;
+}
+
+#taskList li {
+    background: white;
+    padding: 10px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    align-items: center;
+}
+
+/* KPIs */
+.kpis {
+    margin-top: 30px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+}

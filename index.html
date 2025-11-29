@@ -1,0 +1,25 @@
+<!--Onde fica a estrutura da página.-->
+
+
+    <h1>Task Manager - KPIs</h1>
+
+    <!-- Área para adicionar tarefas -->
+    <div class="task-container">
+        <input id="taskInput" type="text" placeholder="Digite uma tarefa...">
+        <button onclick="addTask()">Adicionar</button>
+    </div>
+
+    <!-- Lista de tarefas -->
+    <ul id="taskList"></ul>
+
+    <!-- KPIs -->
+    <div class="kpis">
+        <h2>KPIs</h2>
+        <p>Total de tarefas: <span id="totalTasks">0</span></p>
+        <p>Tarefas concluídas: <span id="completedTasks">0</span></p>
+        <p>Progresso: <span id="progress">0%</span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
